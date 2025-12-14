@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
+  color-scheme: light dark;
+  color: #000000;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* TailWind CSS Variables ## test ##  */
+@theme {
+  --color-primary: #1da1f2;
+  --color-secondary: #14171a;
+  --color-accent: #657786;
+
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@keyframes hover {
+  0%,
+  100% {
+    transform: translateY(50%);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
+}
+
+@layer {
+  .animate-hover {
+    animation: hover 1s ease-in-out infinite;
+  }
+}
+/* TailWind CSS Variables ## test ##  */
