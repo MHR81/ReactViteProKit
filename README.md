@@ -28,64 +28,68 @@ A clean, professional, and production-ready React + Vite base project with moder
 ## 📁 ساختار پروژه / Project Structure
 
 ```
-src/
-├── main.jsx                      # نقطه ورودی اپلیکیشن
-├── App.jsx                       # کامپوننت اصلی
-├── index.css                     # استایل‌های عمومی
+ReactViteProKit/
+├── src/                          # پوشه اصلی کد
+│   ├── main.jsx                  # نقطه ورودی اپلیکیشن
+│   ├── App.jsx                   # کامپوننت اصلی
+│   ├── index.css                 # استایل‌های عمومی
+│   │
+│   ├── layout/                   # بخش‌های اصلی
+│   │   ├── Header.jsx
+│   │   ├── Sidebar.jsx
+│   │   ├── Footer.jsx
+│   │   └── MainLayout/
+│   │       └── MainLayout.jsx
+│   │
+│   ├── pages/                    # صفحات
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   ├── 404/
+│   │   │   └── NotFound.jsx
+│   │   └── Auth/
+│   │       ├── Login.jsx
+│   │       ├── Register.jsx
+│   │       └── layout/
+│   │           └── AuthLayout.jsx
+│   │
+│   ├── components/               # کامپوننت‌های قابل استفاده مجدد
+│   │   ├── Toast.jsx
+│   │   └── ToggleTheme.jsx
+│   │
+│   ├── Routes/                   # مسیریابی
+│   │   ├── Router.jsx
+│   │   └── ProtectedRoute/
+│   │       └── ProtectedRoute.jsx
+│   │
+│   ├── redux/                    # State Management
+│   │   ├── store.js
+│   │   └── slices/
+│   │       ├── authSlice.js
+│   │       ├── loadingSlice.js
+│   │       └── toastSlice.js
+│   │
+│   ├── services/                 # سرویس‌های API
+│   │   ├── auth.js
+│   │   ├── profile.js
+│   │   └── api/
+│   │       ├── base-api.js
+│   │       └── ToastIgnore.jsx
+│   │
+│   ├── seo/                      # بهینه‌سازی SEO
+│   │   └── Seo.jsx
+│   │
+│   └── assets/                   # فایل‌های استاتیک
+│       └── react.svg
 │
-├── layout/                       # بخش‌های اصلی
-│   ├── Header.jsx
-│   ├── Sidebar.jsx
-│   ├── Footer.jsx
-│   └── MainLayout/
-│       └── MainLayout.jsx
+├── public/                       # فایل‌های عمومی
+│   └── vite.svg
 │
-├── pages/                        # صفحات
-│   ├── Home.jsx
-│   ├── About.jsx
-│   ├── 404/
-│   │   └── NotFound.jsx
-│   └── Auth/
-│       ├── Login.jsx
-│       ├── Register.jsx
-│       └── layout/
-│           └── AuthLayout.jsx
-│
-├── components/                   # کامپوننت‌های قابل استفاده مجدد
-│   └── Toast.jsx
-│
-├── Routes/                       # مسیریابی
-│   ├── router.jsx
-│   └── ProtectedRoute/
-│       └── ProtectedRoute.jsx
-│
-├── redux/                        # State Management
-│   ├── store.js
-│   └── slices/
-│       ├── authSlice.js
-│       ├── loadingSlice.js
-│       └── toastSlice.js
-│
-├── services/                     # سرویس‌های API
-│   ├── auth.js
-│   ├── profile.js
-│   └── api/
-│       └── base-api.js
-│
-├── seo/                          # بهینه‌سازی SEO
-│   └── Seo.jsx
-│
-└── assets/                       # فایل‌های استاتیک
-
-public/                           # فایل‌های عمومی
-├── vite.svg
-└── manifest.json                 # PWA Manifest
-
-index.html                        # فایل HTML اصلی
-vite.config.js                    # تنظیمات Vite
-eslint.config.js                  # تنظیمات ESLint
-package.json                      # وابستگی‌ها و اسکریپت‌ها
-tailwind.config.js               # تنظیمات Tailwind
+├── index.html                    # فایل HTML اصلی
+├── vite.config.js                # تنظیمات Vite
+├── eslint.config.js              # تنظیمات ESLint
+├── package.json                  # وابستگی‌ها و اسکریپت‌ها
+├── README.md                     # فایل توضیحی پروژه
+└── .gitignore                    # فایل‌های نادیده گرفتن git
 ```
 
 ---
@@ -227,39 +231,19 @@ Tailwind CSS کامل پیکربندی‌شده است:
 فایل [src/index.css](src/index.css) شامل:
 
 - **Tailwind CSS**: تمام کلاس‌های Tailwind فعال‌شده
-- **Fonts**: فونت Vazirmatn برای زبان فارسی
 - **CSS Variables**: متغیرهای CSS برای رنگ‌ها و تم‌ها
 - **Dark Mode**: پشتیبانی حالت تاریک با class `dark`
 - **Reset Styles**: بازنشانی استایل‌های پیش‌فرض مرورگر
-
-```css
-/* متغیرهای CSS برای روشن */
-:root {
-  --background: #ffffff;
-  --foreground: #020817;
-  --primary: #2563eb;
-  /* ... سایر متغیرها */
-}
-
-/* متغیرهای CSS برای تاریک */
-.dark {
-  --background: #020817;
-  --foreground: #f8fafc;
-  /* ... */
-}
-```
 
 ### 🌙 تغییر تم / Dark Mode Toggle
 
 از کامپوننت [components/ToggleTheme.jsx](src/components/ToggleTheme.jsx) برای تبدیل بین حالت روشن و تاریک استفاده کنید:
 
 ```javascript
-import toggleTheme from '@/components/ToggleTheme';
+import ToggleTheme from '@/components/ToggleTheme';
 
-// فراخوانی تابع برای تغییر تم
-const handleThemeToggle = () => {
-  toggleTheme();
-};
+// فراخوانی کامپوننت برای تغییر تم
+<ToggleTheme />
 ```
 
 **عملکرد:**
@@ -279,12 +263,6 @@ const handleThemeToggle = () => {
 - ✅ خروج خودکار در صورت 401/403
 - ✅ پشتیبانی Retry
 - ✅ فیلتر کردن Toast برای برخی endpoint‌ها
-
-**پیکربندی:**
-```javascript
-const BASE_URL = "https://localhost:5173/api";
-const TIMEOUT = 600000; // 10 دقیقه
-```
 
 **استفاده:**
 ```javascript
@@ -312,49 +290,6 @@ export const ToastIgnore = [
 **استفاده:**
 اگر نمی‌خواهید برای برخی endpoint‌ها پیام Toast نمایش داده شود، آن endpoint را به این آرایه اضافه کنید. این برای درخواست‌های کوچک یا اختیاری مفید است.
 
-### 📊 State Management
-
-Redux Toolkit برای مدیریت state استفاده می‌شود:
-
-```javascript
-import { useSelector, useDispatch } from 'react-redux';
-import { toggleLoading } from '@/redux/slices/loadingSlice';
-
-const Component = () => {
-  const dispatch = useDispatch();
-  const { isLoading } = useSelector(state => state.loading);
-  const { isAuthenticated, user } = useSelector(state => state.auth);
-
-  return (
-    <div>
-      {isAuthenticated && <p>سلام {user.name}</p>}
-      {isLoading && <p>در حال بارگذاری...</p>}
-    </div>
-  );
-};
-```
-
-### 🔍 SEO Optimization
-
-از کامپوننت [seo/Seo.jsx](seo/Seo.jsx) در هر صفحه استفاده کنید:
-
-```javascript
-import Seo from '@/seo/Seo';
-
-const Home = () => {
-  return (
-    <>
-      <Seo
-        title="صفحه اصلی"
-        description="توضیح صفحه اصلی"
-        canonicalUrl="https://example.com/"
-      />
-      <h1>صفحه اصلی</h1>
-    </>
-  );
-};
-```
-
 ---
 
 ## 📦 وابستگی‌های اصلی / Main Dependencies
@@ -376,22 +311,6 @@ const Home = () => {
 ---
 
 ## ⚙️ تنظیمات / Configuration
-
-### Tailwind CSS
-
-فایل تنظیمات: `tailwind.config.js`
-
-```javascript
-module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-};
-```
 
 ### Vite
 
@@ -432,6 +351,8 @@ module.exports = {
 - [Axios Documentation](https://axios-http.com)
 - [React Helmet Async](https://github.com/steverep/react-helmet-async)
 - [Framer Motion](https://www.framer.com/motion)
+- [React Icons](https://react-icons.github.io/react-icons)
+- [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
 
 ---
 
@@ -443,7 +364,9 @@ This project is open source and free to use for learning and production purposes
 
 ---
 
-## 👨‍💻 نویسندگان / Authors
+## 👨‍💻 نویسنده / Author
+
+👨‍💻 MHR81
 
 ساخته‌شده با ❤️ برای توسعه‌دهندگان React
 
