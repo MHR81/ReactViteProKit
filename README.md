@@ -222,6 +222,96 @@ Tailwind CSS کامل پیکربندی‌شده است:
 </div>
 ```
 
+### 🎨 فایل استایل‌های عمومی / Global Styles (index.css)
+
+فایل [src/index.css](src/index.css) شامل:
+
+- **Tailwind CSS**: تمام کلاس‌های Tailwind فعال‌شده
+- **Fonts**: فونت Vazirmatn برای زبان فارسی
+- **CSS Variables**: متغیرهای CSS برای رنگ‌ها و تم‌ها
+- **Dark Mode**: پشتیبانی حالت تاریک با class `dark`
+- **Reset Styles**: بازنشانی استایل‌های پیش‌فرض مرورگر
+
+```css
+/* متغیرهای CSS برای روشن */
+:root {
+  --background: #ffffff;
+  --foreground: #020817;
+  --primary: #2563eb;
+  /* ... سایر متغیرها */
+}
+
+/* متغیرهای CSS برای تاریک */
+.dark {
+  --background: #020817;
+  --foreground: #f8fafc;
+  /* ... */
+}
+```
+
+### 🌙 تغییر تم / Dark Mode Toggle
+
+از کامپوننت [components/ToggleTheme.jsx](src/components/ToggleTheme.jsx) برای تبدیل بین حالت روشن و تاریک استفاده کنید:
+
+```javascript
+import toggleTheme from '@/components/ToggleTheme';
+
+// فراخوانی تابع برای تغییر تم
+const handleThemeToggle = () => {
+  toggleTheme();
+};
+```
+
+**عملکرد:**
+- تبدیل میان حالت روشن و تاریک
+- ذخیره انتخاب در `localStorage`
+- به‌روز‌رسانی خودکار `className` روی عنصر `html`
+
+### 🔌 پیکربندی API / Base API Configuration
+
+فایل [services/api/base-api.js](src/services/api/base-api.js) تمام درخواست‌های HTTP را مدیریت می‌کند:
+
+**ویژگی‌ها:**
+- ✅ ارسال خودکار توکن احراز هویت
+- ✅ مدیریت خطاهای HTTP
+- ✅ نمایش Toast برای خطاها و موفقیت‌ها
+- ✅ بارگذاری خودکار (Loading State)
+- ✅ خروج خودکار در صورت 401/403
+- ✅ پشتیبانی Retry
+- ✅ فیلتر کردن Toast برای برخی endpoint‌ها
+
+**پیکربندی:**
+```javascript
+const BASE_URL = "https://localhost:5173/api";
+const TIMEOUT = 600000; // 10 دقیقه
+```
+
+**استفاده:**
+```javascript
+import { apiRequest } from '@/services/api/base-api';
+
+// درخواست‌های معمولی
+const data = await apiRequest.get('/users');
+const result = await apiRequest.post('/posts', { title: 'نوع' });
+const updated = await apiRequest.put('/posts/1', { title: 'بروز‌شده' });
+await apiRequest.delete('/posts/1');
+```
+
+### 🚫 حذف Toast برای برخی Endpoints / Toast Ignore List
+
+فایل [services/api/ToastIgnore.jsx](src/services/api/ToastIgnore.jsx) شامل لیست endpoint‌هایی است که از نمایش Toast خودکار مستثنی می‌شوند:
+
+```javascript
+export const ToastIgnore = [
+    // "/posts/like",
+    // "/users/check-email",
+    // سایر endpoint‌های بدون Toast
+];
+```
+
+**استفاده:**
+اگر نمی‌خواهید برای برخی endpoint‌ها پیام Toast نمایش داده شود، آن endpoint را به این آرایه اضافه کنید. این برای درخواست‌های کوچک یا اختیاری مفید است.
+
 ### 📊 State Management
 
 Redux Toolkit برای مدیریت state استفاده می‌شود:
