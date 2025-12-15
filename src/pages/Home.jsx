@@ -1,4 +1,5 @@
 import Seo from "../seo/Seo";
+import toggleTheme from "../components/toggleTheme";
 
 export default function Home() {
   return (
@@ -13,6 +14,12 @@ export default function Home() {
       <p className="text-gray-700">
         This is a clean and SEO-ready React layout template.
       </p>
+      <button
+        onClick={toggleTheme}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Toggle Theme
+      </button>
     </>
   );
 }

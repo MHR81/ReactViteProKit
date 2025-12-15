@@ -1,45 +1,81 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap");
+
+*::before,
+*::after {
+  margin: 0;                 /* حذف فاصله پیش‌فرض مرورگر */
+  padding: 0;                /* حذف فاصله داخلی پیش‌فرض */
+  box-sizing: border-box;    /* استاندارد مدرن محاسبه اندازه */
+}
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  
-  color-scheme: light dark;
-  color: #000000;
-  background-color: #ffffff;
+  --background: #ffffff;
+  --foreground: #020817;
+  --card: #ffffff;
+  --card-foreground: #020817;
+  --primary: #2563eb;
+  --primary-foreground: #f8fafc;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --font-sans: "Vazirmatn", system-ui, sans-serif;
+
+  --radius: 0.75rem;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.dark {
+  --background: #020817;
+  --foreground: #f8fafc;
+  --card: #020817;
+  --card-foreground: #f8fafc;
+  --primary: #3b82f6;
+  --primary-foreground: #020817;
+  --secondary: #0f172a;
+  --secondary-foreground: #f8fafc;
+  --muted: #0f172a;
+  --muted-foreground: #94a3b8;
+  --border: #1e293b;
 }
 
-/* TailWind CSS Variables ## test ##  */
-@theme {
-  --color-primary: #1da1f2;
-  --color-secondary: #14171a;
-  --color-accent: #657786;
-
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+html {
+  font-family: var(--font-sans);
 }
 
-@keyframes hover {
-  0%,
-  100% {
-    transform: translateY(50%);
-  }
-  50% {
-    transform: translateY(-50%);
-  }
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;                     /* فاصله مناسب خطوط متن */
+  -webkit-font-smoothing: antialiased;  /* نرم‌تر شدن فونت */
+  text-rendering: optimizeLegibility;   /* خوانایی بهتر متن */
 }
 
-@layer {
-  .animate-hover {
-    animation: hover 1s ease-in-out infinite;
-  }
+/* لینک‌ها استایل پیش‌فرض نداشته باشن */
+a {
+  color: inherit;
+  text-decoration: none;
 }
-/* TailWind CSS Variables ## test ##  */
+
+/* دکمه‌ها فونت پروژه رو بگیرن */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* تصاویر و مدیاها ریسپانسیو باشن */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* رنگ انتخاب متن (drag select) */
+::selection {
+  background-color: var(--primary);           /* بک‌گراند انتخاب */
+  color: var(--primary-foreground);            /* رنگ متن انتخاب */
+}

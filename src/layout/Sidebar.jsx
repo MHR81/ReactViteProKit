@@ -1,6 +1,7 @@
 export default function Sidebar() {
   return (
     <aside className="w-60 border-r p-6 hidden md:block">
+      <h2 className="text-lg font-semibold mb-4">Sidebar</h2>
       <ul className="space-y-3">
         <li className="font-medium">Dashboard</li>
         <li className="font-medium">Products</li>
